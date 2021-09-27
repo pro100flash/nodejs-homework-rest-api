@@ -3,12 +3,14 @@ const path = require('path')
 const { v4: uuidv4 } = require('uuid')
 
 const contactsPath = path.join(__dirname, '/contacts.json')
+console.log(contactsPath)
 
 const listContacts = async () => {
   try {
     const data = await fs.readFile(contactsPath, 'utf8')
     return JSON.parse(data)
   } catch (error) {
+    console.log(error)
   }
 }
 
@@ -18,6 +20,7 @@ const getContactById = async (contactId) => {
     const contact = contacts.find(({ id }) => id.toString() === contactId)
     return contact
   } catch (error) {
+    console.log(error)
   }
 }
 
@@ -35,6 +38,7 @@ const removeContact = async (contactId) => {
     await fs.writeFile(contactsPath, stringifiedArray, 'utf8')
     return deletedContact
   } catch (error) {
+    console.log(error)
   }
 }
 
@@ -49,6 +53,7 @@ const addContact = async (body) => {
     await fs.writeFile(contactsPath, stringifiedArray, 'utf8')
     return newContact
   } catch (error) {
+    console.log(error)
   }
 }
 
@@ -64,6 +69,7 @@ const updateContact = async (contactId, body) => {
     await fs.writeFile(contactsPath, stringifiedArray, 'utf8')
     return contacts[index]
   } catch (error) {
+    console.log(error)
   }
 }
 
